@@ -1,2 +1,8 @@
+"""
+Den här modulen har bara en funktion, se nedan.
+"""
 def hello():
-    return 'Peter'
+    """
+    Returnerar namnet på upphovspersonen till denna modul 
+    """
+    return 'Peter Segerstedt'
