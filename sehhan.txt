@@ -1,0 +1,16 @@
+sehhan.py
+
+Dependencies:
+FME 2024 installerat. Antingen så ska installationen hittas genom miljövariablen FME_HOME eller så ska installationen ligga i någon av mapparna:
+C:\Program Files\FME2024.2
+C:\Program Files\FME2024
+C:\Program Files\FME
+
+FME-skriptet FetchRecords.fmw ska ligga i samma mapp som python-skriptet.
+
+implementation:
+sehhan.hello()
+sehhan.hello(**kwargs))
+
+20250505
+Hans
