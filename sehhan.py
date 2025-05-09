@@ -33,29 +33,18 @@ def hello(**kwargs):
     # if args.Format is not None:
         # Format = args.Format
     
+    def guess_fme_home():
+        for folder in [
+                  r'C:\Program Files\FME2024.2'
+                , r'C:\Program Files\FME2024'
+                , r'C:\Program Files\FME']:
+            if os.path.exists(os.path.join(folder, 'fme.exe')):
+                return folder
     #Fetch FME path from system variable FME_HOME, and if this don't exists test for likely folders that FME 2024 might reside in.
-    if os.environ.get("FME_HOME"):
-        for element in os.environ.get("FME_HOME").split(';')[0].split('\\'):
-            if i == 0:
-                    FmePath = element + '\\\\'
-            if i == 1:
-                    FmePath = FmePath + element
-            if i > 1:
-                    FmePath = FmePath + '\\\\' + element
-            if i == len(os.environ.get("FME_HOME").split(';')[0].split('\\'))-1:
-                    FmePath = FmePath + '\\\\fme.exe'
-            i = i+1
-        FmePath = FmePath + '\\\\fme.exe'
-    else:
-        if os.path.exists("C:\\Program Files\\FME2024.2\\fme.exe"):
-            FmePath = 'C:\\\\Program Files\\\\FME2024.2\\\\fme.exe'
-        elif os.path.exists("C:\\Program Files\\FME2024\\fme.exe"):
-            FmePath = 'C:\\\\Program Files\\\\FME2024\\\\fme.exe'
-        elif os.path.exists("C:\\Program Files\\FME\\fme.exe"):
-            FmePath = 'C:\\\\Program Files\\\\FME\\\\fme.exe'
-        else:
-            FmePath = ""
-            pass
+    fme_home = os.environ.get("FME_HOME", guess_fme_home())
+    FmePath = None
+    if fme_home is not None:
+        FmePath = os.path.join(fme_home, 'fme.exe')
     
     #Default values for search filter, resulting in favorite record from Discogs
     if Artist == "" and Album == "" and Format == "":
