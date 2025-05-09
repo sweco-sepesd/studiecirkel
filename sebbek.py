@@ -1,29 +1,26 @@
 # Example file showing a circle moving on screen
 import pygame
+def hello():
+    # pygame setup
+    pygame.init()
+    screen = pygame.display.set_mode([1280, 720])
+    clock = pygame.time.Clock()
+    running = True
 
-# pygame setup
-pygame.init()
-screen = pygame.display.set_mode([1920, 1080])
-clock = pygame.time.Clock()
-running = True
+    font = pygame.font.Font('freesansbold.ttf', 32)
 
-font = pygame.font.Font('freesansbold.ttf', 32)
+    text = font.render('Jag heter Beatrice', True, 'blue')
 
-text = font.render('Jag heter Beatrice', True, 'blue')
+    while running:
+        #Quit game if you close the window
+        for event in pygame.event.get():
+            if event.type == pygame.QUIT:
+                running = False
 
-while running:
-    #Quit game if you close the window
-    for event in pygame.event.get():
-        if event.type == pygame.QUIT:
-            running = False
+        screen.fill("red")
+        screen.blit(text, (0,0))
 
-    screen.fill("red")
-    screen.blit(text, (0,0))
+        pygame.display.update()
 
-    pygame.display.update()
-
-print('quit')
-pygame.quit()
-
-
-    
+    print('quit')
+    pygame.quit()
