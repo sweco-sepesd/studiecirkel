@@ -54,7 +54,8 @@ def hello(**kwargs):
     
     #Calling FME as a python subprocess if path to a FME installation has been found on the system
     if FmePath:
-        cmd= """\"%s\" \"FetchRecords.fmw\" --Artist \"%s\" --Album \"%s\" --Format \"%s\" --FME_LAUNCH_VIEWER_APP \"NO\"""" % (FmePath, Artist, Album, Format)
+        fme_workspace = os.path.join(os.path.dirname(__file__), 'FetchRecords.fmw')
+        cmd= """\"%s\" \"%s\" --Artist \"%s\" --Album \"%s\" --Format \"%s\" --FME_LAUNCH_VIEWER_APP \"NO\"""" % (FmePath, fme_workspace, Artist, Album, Format)
         process = subprocess.Popen(cmd, stdout=subprocess.PIPE)
         process.wait()
         #Read text file created by FME
